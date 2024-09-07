@@ -14,7 +14,8 @@ namespace Snake
         public Direction Dir { get; private set; }
         public int Score { get; private set; }
         public bool GameOver { get; private set; }
-
+        
+        private readonly LinkedList<Direction> directionChanges = new LinkedList<Direction>();
         private readonly LinkedList<Position> snakePositions = new LinkedList<Position>();
         private readonly Random random = new Random(); // random generator for food generation
 
@@ -45,9 +46,9 @@ namespace Snake
         {
             for (int r = 0; r < Rows; r++)
             {
-                for (int c = 0; c <= Columns; c++)
+                for (int c = 0; c < Columns; c++)
                 {
-                    if (Grid[r,c] == GridValue.Empty)
+                    if (Grid[r,c] == GridValue.Empty) // 53:00
                     {
                         yield return new Position(r, c);
                     }
@@ -99,10 +100,34 @@ namespace Snake
             snakePositions.RemoveLast();
         }
 
+        private Direction GetLastDirection()
+        {
+            if (directionChanges.Count == 0)
+            {
+                return Dir;
+            }
+
+            return directionChanges.Last.Value;
+        }
+
+        private bool CanChangeDirection(Direction newDirection)
+        {
+            if (directionChanges.Count == 2)
+            {
+                return false;
+            }
+
+            Direction lastDirection = GetLastDirection();
+            return newDirection != lastDirection && newDirection != lastDirection.Opposite();
+        }
+
         // Snake Directions
         public void ChangeDirection(Direction direction)
         {
-            Dir = direction;
+            if (CanChangeDirection(direction))
+            {
+                directionChanges.AddLast(direction);
+            }
         }
 
         // Check if snake is out-of-bounds
@@ -133,6 +158,12 @@ namespace Snake
         // Move snake one head in the current direction
         public void Move()
         {
+            if (directionChanges.Count > 0)
+            {
+                Dir = directionChanges.First.Value;
+                directionChanges.RemoveFirst();
+            }
+
             Position newHeadPos = HeadPosition().Translate(Dir);
             GridValue hit = WillHit(newHeadPos);
 
