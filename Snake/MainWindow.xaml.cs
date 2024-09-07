@@ -92,6 +92,7 @@ namespace Snake
             }
         }
 
+        // TODO: Options for Game Speed
         private async Task GameLoop()
         {
             while (!gameState.GameOver)
