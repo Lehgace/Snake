@@ -2,7 +2,7 @@
 {
     public enum GridValue
     {
-        //Positions in the Gird
+        //Positions in the Grid
         Empty,
         Snake,
         Food,

@@ -89,6 +89,18 @@ namespace Snake
                 case Key.Down:
                     gameState.ChangeDirection(Direction.Down);
                     break;
+                case Key.A:
+                    gameState.ChangeDirection(Direction.Left);
+                    break;
+                case Key.D:
+                    gameState.ChangeDirection(Direction.Right);
+                    break;
+                case Key.W:
+                    gameState.ChangeDirection(Direction.Up);
+                    break;
+                case Key.S:
+                    gameState.ChangeDirection(Direction.Down);
+                    break;
             }
         }
 

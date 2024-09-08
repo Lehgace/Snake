@@ -11,23 +11,33 @@
   <ItemGroup>
     <None Remove="Assets\Body.png" />
     <None Remove="Assets\DeadBody.png" />
+    <None Remove="Assets\DeadHandBody.png" />
+    <None Remove="Assets\DeadHandHead.png" />
     <None Remove="Assets\DeadHead.png" />
     <None Remove="Assets\DroidSansMono.ttf" />
     <None Remove="Assets\Empty.png" />
     <None Remove="Assets\Food.png" />
+    <None Remove="Assets\HandBody.png" />
+    <None Remove="Assets\HandHead.png" />
     <None Remove="Assets\Head.png" />
     <None Remove="Assets\icon.ico" />
+    <None Remove="Assets\PokerChip.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="Assets\Body.png" />
     <Resource Include="Assets\DeadBody.png" />
+    <Resource Include="Assets\DeadHandBody.png" />
+    <Resource Include="Assets\DeadHandHead.png" />
     <Resource Include="Assets\DeadHead.png" />
     <Resource Include="Assets\DroidSansMono.ttf" />
     <Resource Include="Assets\Empty.png" />
     <Resource Include="Assets\Food.png" />
+    <Resource Include="Assets\HandBody.png" />
+    <Resource Include="Assets\HandHead.png" />
     <Resource Include="Assets\Head.png" />
     <Resource Include="Assets\icon.ico" />
+    <Resource Include="Assets\PokerChip.png" />
   </ItemGroup>
 
 </Project>
