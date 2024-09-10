@@ -48,7 +48,7 @@ namespace Snake
             {
                 for (int c = 0; c < Columns; c++)
                 {
-                    if (Grid[r,c] == GridValue.Empty) // 53:00
+                    if (Grid[r,c] == GridValue.Empty)
                     {
                         yield return new Position(r, c);
                     }

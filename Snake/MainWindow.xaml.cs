@@ -89,6 +89,18 @@ namespace Snake
                 case Key.Down:
                     gameState.ChangeDirection(Direction.Down);
                     break;
+                case Key.A:
+                    gameState.ChangeDirection(Direction.Left);
+                    break;
+                case Key.D:
+                    gameState.ChangeDirection(Direction.Right);
+                    break;
+                case Key.W:
+                    gameState.ChangeDirection(Direction.Up);
+                    break;
+                case Key.S:
+                    gameState.ChangeDirection(Direction.Down);
+                    break;
             }
         }
 
@@ -98,6 +110,7 @@ namespace Snake
             while (!gameState.GameOver)
             {
                 await Task.Delay(100);
+                //await Task.Delay(200);
                 gameState.Move();
                 Draw();
             }
@@ -132,7 +145,7 @@ namespace Snake
         {
             DrawGrid();
             DrawSnakeHead();
-            ScoreText.Text = $"SCORE { gameState.Score }";
+            ScoreText.Text = $"BET ${ gameState.Score },000";
         }
 
         // Looks a grid array in gamestate, update grid images to reflect changes
@@ -163,13 +176,28 @@ namespace Snake
         private async Task DrawDeadSnake()
         {
             List<Position> positions = new List<Position>(gameState.SnakePositions());
+            int snakeLength = positions.Count;
 
             for (int i = 0; i < positions.Count; i++)
             {
                 Position pos = positions[i];
                 ImageSource source = (i == 0) ? Images.DeadHead : Images.DeadBody;
                 gridImages[pos.Row, pos.Column].Source = source;
-                await Task.Delay(50);
+                
+                // Speed up decay of snake as it grows longer; snakelength includes the starting snake size of 3
+                if (snakeLength > 40)
+                {
+                    await Task.Delay(10);
+                }
+                else if (snakeLength > 20)
+                {
+                    await Task.Delay(25);
+                }
+                else
+                {
+                    await Task.Delay(50);
+                }    
+                
             }
         }
 
@@ -187,7 +215,7 @@ namespace Snake
             await DrawDeadSnake();
             await Task.Delay(1000);
             Overlay.Visibility = Visibility.Visible;
-            OverlayText.Text = "Press Any Key To Start";
+            OverlayText.Text = "\tBusted!\nAny Key To Gamble Again";
         }
     }
 }
