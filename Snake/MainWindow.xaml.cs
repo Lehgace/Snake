@@ -36,6 +36,29 @@ namespace Snake
         private readonly Image[,] gridImages;
         private GameState gameState;
         private bool gameRunning;
+        private int[] SeededSnakeBody { get; set; }
+
+        private int GetGridSize()
+        {
+            return rows * columns;
+        }
+
+        private int[] SeedRandomSnakeBody()
+        {
+            int gridSize = GetGridSize();
+            int[] seedSnakeBody = new int[gridSize];
+            Random random = new Random();
+            int pickSuit;
+
+            for (int i = 0; i < gridSize - 1; i++)
+            {
+                pickSuit = random.Next(1, 5);
+                seedSnakeBody[i] = pickSuit;
+            }
+            return seedSnakeBody;
+        }
+
+        
 
         public MainWindow()
         {
@@ -46,6 +69,7 @@ namespace Snake
 
         private async Task RunGame()
         {
+            SeededSnakeBody = SeedRandomSnakeBody();
             Draw();
             await ShowCountDown();
             Overlay.Visibility = Visibility.Hidden;
@@ -178,34 +202,31 @@ namespace Snake
         private void DrawRandomSnakeBody()
         {
             List<Position> positions = new List<Position>(gameState.SnakePositions());
+            
             int snakeLength = positions.Count;
-            Random random = new Random();
 
             for (int i = 1; i < positions.Count; i++)
             {
-                int pickSuit = random.Next(1, 5);
-                Console.WriteLine("RNG Number: " + pickSuit);
+                int pickedSuit = SeededSnakeBody[i];
                 Position bodypos = positions[i];
+                
                 ImageSource source;
-                switch(pickSuit)
+                switch(pickedSuit)
                 {
                     case 2:
                         source = Images.Body2;
-                        gridImages[bodypos.Row, bodypos.Column].Source = source;
                         break;
                     case 3:
                         source = Images.Body3;
-                        gridImages[bodypos.Row, bodypos.Column].Source = source;
                         break;
                     case 4:
                         source = Images.Body4;
-                        gridImages[bodypos.Row, bodypos.Column].Source = source;
                         break;
                     default:
                         source = Images.Body;
-                        gridImages[bodypos.Row, bodypos.Column].Source = source;
                         break;
                 };
+                gridImages[bodypos.Row, bodypos.Column].Source = source;
             }
         }
 
