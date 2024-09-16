@@ -5,13 +5,13 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <!-- Colors: 
-            Poker Green: 35654d
+            Poker Green: 35654d, Dark: 2e4d3e
             Lighter Poker Green:487860
             Wood Color: BA8C63
         -->
         <SolidColorBrush x:Key="BackgroundColor">#2e4d3e</SolidColorBrush>
         <SolidColorBrush x:Key="GridBackgroundColor">#35654d</SolidColorBrush>
-        <SolidColorBrush x:Key="GridLineColor">#FFFFFF</SolidColorBrush>
+        <SolidColorBrush x:Key="GridLineColor">#487860</SolidColorBrush>
         <SolidColorBrush x:Key="TextColor">#EBEBEB</SolidColorBrush>
         <SolidColorBrush x:Key="OverlayColor">#7F000000</SolidColorBrush>
         <FontFamily x:Key="MainFont">Assets/#Droid Sans Mono</FontFamily>

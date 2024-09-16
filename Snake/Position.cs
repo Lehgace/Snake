@@ -3,8 +3,8 @@ namespace Snake
 {
     public class Position
     {
-        public int Row { get;}
-        public int Column { get;}
+        public int Row { get; }
+        public int Column { get; }
 
         public Position(int row, int column)
         {

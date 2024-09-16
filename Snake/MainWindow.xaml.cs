@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using Snake;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -35,6 +36,29 @@ namespace Snake
         private readonly Image[,] gridImages;
         private GameState gameState;
         private bool gameRunning;
+        private int[] SeededSnakeBody { get; set; }
+
+        private int GetGridSize()
+        {
+            return rows * columns;
+        }
+
+        private int[] SeedRandomSnakeBody()
+        {
+            int gridSize = GetGridSize();
+            int[] seedSnakeBody = new int[gridSize];
+            Random random = new Random();
+            int pickSuit;
+
+            for (int i = 0; i < gridSize - 1; i++)
+            {
+                pickSuit = random.Next(1, 5);
+                seedSnakeBody[i] = pickSuit;
+            }
+            return seedSnakeBody;
+        }
+
+        
 
         public MainWindow()
         {
@@ -45,6 +69,7 @@ namespace Snake
 
         private async Task RunGame()
         {
+            SeededSnakeBody = SeedRandomSnakeBody();
             Draw();
             await ShowCountDown();
             Overlay.Visibility = Visibility.Hidden;
@@ -145,7 +170,8 @@ namespace Snake
         {
             DrawGrid();
             DrawSnakeHead();
-            ScoreText.Text = $"BET ${ gameState.Score },000";
+            DrawRandomSnakeBody();
+            ScoreText.Text = $"Bet ${ gameState.Score },000";
         }
 
         // Looks a grid array in gamestate, update grid images to reflect changes
@@ -171,6 +197,37 @@ namespace Snake
             int rotation = directionToRotation[gameState.Dir];
             image.RenderTransform = new RotateTransform(rotation);
 
+        }
+
+        private void DrawRandomSnakeBody()
+        {
+            List<Position> positions = new List<Position>(gameState.SnakePositions());
+            
+            int snakeLength = positions.Count;
+
+            for (int i = 1; i < positions.Count; i++)
+            {
+                int pickedSuit = SeededSnakeBody[i];
+                Position bodypos = positions[i];
+                
+                ImageSource source;
+                switch(pickedSuit)
+                {
+                    case 2:
+                        source = Images.Body2;
+                        break;
+                    case 3:
+                        source = Images.Body3;
+                        break;
+                    case 4:
+                        source = Images.Body4;
+                        break;
+                    default:
+                        source = Images.Body;
+                        break;
+                };
+                gridImages[bodypos.Row, bodypos.Column].Source = source;
+            }
         }
 
         private async Task DrawDeadSnake()
