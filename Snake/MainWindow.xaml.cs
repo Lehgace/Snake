@@ -171,7 +171,7 @@ namespace Snake
             DrawGrid();
             DrawSnakeHead();
             DrawRandomSnakeBody();
-            ScoreText.Text = $"BET ${ gameState.Score },000";
+            ScoreText.Text = $"Bet ${ gameState.Score },000";
         }
 
         // Looks a grid array in gamestate, update grid images to reflect changes

@@ -7,15 +7,8 @@ namespace Snake
     // Container for all image assets
     public static class Images
     {
-        //public readonly static ImageSource Empty = LoadImage("Empty.png");
-        //public readonly static ImageSource Body = LoadImage("Body.png");
-        //public readonly static ImageSource Head = LoadImage("Head.png");
-        //public readonly static ImageSource Food = LoadImage("Food.png");
-        //public readonly static ImageSource DeadBody = LoadImage("DeadBody.png");
-        //public readonly static ImageSource DeadHead = LoadImage("DeadHead.png");
-
         public readonly static ImageSource Empty = LoadImage("EmptyGreen.png");
-        public readonly static ImageSource Food = LoadImage("RedPokerChip.png");
+        public readonly static ImageSource Food = LoadImage("PurplePokerChip.png");
         public readonly static ImageSource Body = LoadImage("Spade.png");
         public readonly static ImageSource Body2 = LoadImage("Diamond.png");
         public readonly static ImageSource Body3 = LoadImage("Club.png");
