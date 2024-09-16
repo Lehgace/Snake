@@ -11,39 +11,51 @@
   <ItemGroup>
     <None Remove="Assets\BlueCardBackground.png" />
     <None Remove="Assets\Body.png" />
+    <None Remove="Assets\Club.png" />
     <None Remove="Assets\DeadBody.png" />
     <None Remove="Assets\DeadHandBody.png" />
     <None Remove="Assets\DeadHandHead.png" />
     <None Remove="Assets\DeadHead.png" />
+    <None Remove="Assets\Diamond.png" />
     <None Remove="Assets\DroidSansMono.ttf" />
     <None Remove="Assets\Empty.png" />
+    <None Remove="Assets\EmptyGreen.png" />
     <None Remove="Assets\EmptyWhite.png" />
     <None Remove="Assets\Food.png" />
     <None Remove="Assets\HandBody.png" />
     <None Remove="Assets\HandHead.png" />
     <None Remove="Assets\Head.png" />
+    <None Remove="Assets\Heart.png" />
     <None Remove="Assets\icon.ico" />
     <None Remove="Assets\PokerChip.png" />
     <None Remove="Assets\RedPokerChip.png" />
+    <None Remove="Assets\SimpleCard.png" />
+    <None Remove="Assets\Spade.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="Assets\BlueCardBackground.png" />
     <Resource Include="Assets\Body.png" />
+    <Resource Include="Assets\Club.png" />
     <Resource Include="Assets\DeadBody.png" />
     <Resource Include="Assets\DeadHandBody.png" />
     <Resource Include="Assets\DeadHandHead.png" />
     <Resource Include="Assets\DeadHead.png" />
+    <Resource Include="Assets\Diamond.png" />
     <Resource Include="Assets\DroidSansMono.ttf" />
     <Resource Include="Assets\Empty.png" />
+    <Resource Include="Assets\EmptyGreen.png" />
     <Resource Include="Assets\EmptyWhite.png" />
     <Resource Include="Assets\Food.png" />
     <Resource Include="Assets\HandBody.png" />
     <Resource Include="Assets\HandHead.png" />
     <Resource Include="Assets\Head.png" />
+    <Resource Include="Assets\Heart.png" />
     <Resource Include="Assets\icon.ico" />
     <Resource Include="Assets\PokerChip.png" />
     <Resource Include="Assets\RedPokerChip.png" />
+    <Resource Include="Assets\SimpleCard.png" />
+    <Resource Include="Assets\Spade.png" />
   </ItemGroup>
 
 </Project>

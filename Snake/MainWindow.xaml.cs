@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using Snake;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -145,6 +146,7 @@ namespace Snake
         {
             DrawGrid();
             DrawSnakeHead();
+            DrawRandomSnakeBody();
             ScoreText.Text = $"BET ${ gameState.Score },000";
         }
 
@@ -171,6 +173,40 @@ namespace Snake
             int rotation = directionToRotation[gameState.Dir];
             image.RenderTransform = new RotateTransform(rotation);
 
+        }
+
+        private void DrawRandomSnakeBody()
+        {
+            List<Position> positions = new List<Position>(gameState.SnakePositions());
+            int snakeLength = positions.Count;
+            Random random = new Random();
+
+            for (int i = 1; i < positions.Count; i++)
+            {
+                int pickSuit = random.Next(1, 5);
+                Console.WriteLine("RNG Number: " + pickSuit);
+                Position bodypos = positions[i];
+                ImageSource source;
+                switch(pickSuit)
+                {
+                    case 2:
+                        source = Images.Body2;
+                        gridImages[bodypos.Row, bodypos.Column].Source = source;
+                        break;
+                    case 3:
+                        source = Images.Body3;
+                        gridImages[bodypos.Row, bodypos.Column].Source = source;
+                        break;
+                    case 4:
+                        source = Images.Body4;
+                        gridImages[bodypos.Row, bodypos.Column].Source = source;
+                        break;
+                    default:
+                        source = Images.Body;
+                        gridImages[bodypos.Row, bodypos.Column].Source = source;
+                        break;
+                };
+            }
         }
 
         private async Task DrawDeadSnake()
