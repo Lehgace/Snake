@@ -1,13 +1,11 @@
-# Gambler Snake ~ C# Project
-![SnakeGambleMkI](https://github.com/user-attachments/assets/9f586754-f952-46da-b1d9-f817e7b9383d)
+# Gambler Snake ~ C# Project ver 0.0.2
+![SnakeGambleMkII](https://github.com/user-attachments/assets/1dd73ea3-daac-4ddc-9734-17ce4ec46fca)
 
 
 ## A game of snake with a poker theme to it
-Will you be able to max out your bet? Or bust trying?
+Will you be able to max out your bet? Or bust the savings account trying?
 
 ### Planned Future Additions and WIP
-* Aesthetic changes to grid and assets
-  * Fine tuning color selection
-  * Modifying snake body to include different suits of playing cards
+* Overhaul snake body to display randomized cards from a deck
 * Feature to pause the game mid-session
 * Feature to change the speed of the snake
