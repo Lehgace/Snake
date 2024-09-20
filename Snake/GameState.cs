@@ -14,6 +14,7 @@ namespace Snake
         public Direction Dir { get; private set; }
         public int Score { get; private set; }
         public bool GameOver { get; private set; }
+        public bool GamePaused = false;
         
         private readonly LinkedList<Direction> directionChanges = new LinkedList<Direction>();
         private readonly LinkedList<Position> snakePositions = new LinkedList<Position>();

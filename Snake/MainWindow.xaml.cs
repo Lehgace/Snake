@@ -58,7 +58,6 @@ namespace Snake
             return seedSnakeBody;
         }
 
-        
 
         public MainWindow()
         {
@@ -69,7 +68,7 @@ namespace Snake
 
         private async Task RunGame()
         {
-            SeededSnakeBody = SeedRandomSnakeBody();
+            SeededSnakeBody = SeedRandomSnakeBody(); // generate seed for an individual game's snake body
             Draw();
             await ShowCountDown();
             Overlay.Visibility = Visibility.Hidden;
@@ -126,6 +125,9 @@ namespace Snake
                 case Key.S:
                     gameState.ChangeDirection(Direction.Down);
                     break;
+                case Key.Space:
+                    gameState.GamePaused = !gameState.GamePaused;
+                    break;
             }
         }
 
@@ -134,10 +136,18 @@ namespace Snake
         {
             while (!gameState.GameOver)
             {
-                await Task.Delay(100);
-                //await Task.Delay(200);
-                gameState.Move();
-                Draw();
+                if (gameState.GamePaused)
+                {
+                    await ShowGamePaused();
+                }
+                else
+                {
+                    OverlayPause.Visibility = Visibility.Hidden;
+                    await Task.Delay(100);
+                    //await Task.Delay(200);
+                    gameState.Move();
+                    Draw();
+                }
             }
         }
 
@@ -162,7 +172,6 @@ namespace Snake
                     GameGrid.Children.Add(image);
                 }
             }
-
             return images;
         }
 
@@ -196,16 +205,14 @@ namespace Snake
 
             int rotation = directionToRotation[gameState.Dir];
             image.RenderTransform = new RotateTransform(rotation);
-
         }
 
         private void DrawRandomSnakeBody()
         {
             List<Position> positions = new List<Position>(gameState.SnakePositions());
-            
             int snakeLength = positions.Count;
 
-            for (int i = 1; i < positions.Count; i++)
+            for (int i = 1; i < snakeLength; i++)
             {
                 int pickedSuit = SeededSnakeBody[i];
                 Position bodypos = positions[i];
@@ -235,7 +242,7 @@ namespace Snake
             List<Position> positions = new List<Position>(gameState.SnakePositions());
             int snakeLength = positions.Count;
 
-            for (int i = 0; i < positions.Count; i++)
+            for (int i = 0; i < snakeLength; i++)
             {
                 Position pos = positions[i];
                 ImageSource source = (i == 0) ? Images.DeadHead : Images.DeadBody;
@@ -254,7 +261,6 @@ namespace Snake
                 {
                     await Task.Delay(50);
                 }    
-                
             }
         }
 
@@ -273,6 +279,13 @@ namespace Snake
             await Task.Delay(1000);
             Overlay.Visibility = Visibility.Visible;
             OverlayText.Text = "\tBusted!\nAny Key To Gamble Again";
+        }
+
+        private async Task ShowGamePaused()
+        {
+            await Task.Delay(1);
+            OverlayPause.Visibility = Visibility.Visible;
+            OverlayPauseText.Text = "Game Paused\nSpace to Continue";
         }
     }
 }
